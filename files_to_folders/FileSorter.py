@@ -85,11 +85,3 @@ class FileSorter:
         self._file_action(file, output_file_path)
 
         return output_file_path
-
-
-if __name__ == "__main__":
-    files = Path.cwd() / "files_to_folders" / "files_to_folders" / "test_data"
-    files = list(files.rglob("*"))
-    fs = FileSorter([re.compile('([test]*)_([0-9]*).txt')], Path.cwd() / "files_to_folders" /
-                    "files_to_folders" / "test_result", file_action=FileAction.DRYRUN)
-    fs.sort(files)
