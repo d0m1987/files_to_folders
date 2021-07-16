@@ -4,6 +4,8 @@
 
 
 import unittest
+import uuid
+import shutil
 
 from files_to_folders.FileSorter import FileSorter
 
@@ -14,10 +16,23 @@ class Test_FileSorter(unittest.TestCase):
     """Tests for class FileSorter."""
 
     def setUp(self):
-        """Set up test fixtures, if any."""
+        self.path_testfolder = Path.cwd() / "tests" / "test_data"
+        self.test_input_folder = self.path_testfolder / "test_input_folder"
+        self.test_input_folder.mkdir(parents=True, exist_ok=True)
+        self.test_output_folder = self.path_testfolder / "test_output_folder"
+        self.test_output_folder.mkdir(parents=True, exist_ok=True)
+        self._create_folders_and_files(self.test_input_folder)
+
+    def _create_folders_and_files(self, input_folder:Path):
+        folders = [ input_folder / str(uuid.uuid1()) for _ in range(2)]
+        for folder in folders:
+            folder.mkdir(parents=True)
+            (folder / "test_123.txt").touch()
+            (folder / "test_124.txt").touch()
 
     def tearDown(self):
-        """Tear down test fixtures, if any."""
+        """Tear down test folder structure."""
+        shutil.rmtree(self.path_testfolder)
 
     def test_regexes_have_invalid_type(self):
         """Invalid regex types raise a TypeError"""
@@ -67,3 +82,18 @@ class Test_FileSorter(unittest.TestCase):
                 FileSorter(regexes=[".*"], output_folder=valid_output_folder)
             except Exception as e:
                 self.fail(f"No exception expected but {valid_output_folder=} raised the exception {e}.")
+    
+    def test_sort_function(self):
+        """Valid, easy input for sort function works"""
+        regexes = [r'([a-z]*)_([0-9]*).txt']
+        fs = FileSorter(regexes, self.test_output_folder)
+        fs.sort(list(self.test_input_folder.rglob('*.txt')))
+
+        output_folder_files = set(file for file in self.test_output_folder.rglob('*') if file.is_file())
+        correct_output_folder_structure = {
+            self.test_output_folder / "test" / "124" / "test_124.txt",
+            self.test_output_folder / "test" / "123" / "test_123.txt",
+        }
+
+        self.assertEqual(output_folder_files, correct_output_folder_structure)
+
