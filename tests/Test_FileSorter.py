@@ -8,6 +8,10 @@ import uuid
 import shutil
 
 from files_to_folders.FileSorter import FileSorter
+from files_to_folders.logger import logger
+import logging
+
+logger.setLevel(logging.DEBUG)
 
 from pathlib import Path
 import re
