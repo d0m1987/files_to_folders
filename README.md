@@ -3,8 +3,6 @@
 <p>
   <a href="https://pypi.python.org/pypi/files_to_folders"><img src="https://img.shields.io/pypi/v/files_to_folders.svg" alt="PyPi"></a>
   <a href="https://travis-ci.com/d0m1987/files_to_folders"><img src="https://img.shields.io/travis/d0m1987/files_to_folders.svg" alt="travis"></a>
-</p>
-<p align="left">
   <a href="https://files-to-folders.readthedocs.io/en/latest/?version=latest"><img src="https://readthedocs.org/projects/files-to-folders/badge/?version=latest" alt="documentation"></a>
 </p>
 
