@@ -1,20 +1,12 @@
-================
-Files to folders
-================
+# Files to folders
 
-
-.. image:: https://img.shields.io/pypi/v/files_to_folders.svg
-        :target: https://pypi.python.org/pypi/files_to_folders
-
-.. image:: https://img.shields.io/travis/d0m1987/files_to_folders.svg
-        :target: https://travis-ci.com/d0m1987/files_to_folders
-
-.. image:: https://readthedocs.org/projects/files-to-folders/badge/?version=latest
-        :target: https://files-to-folders.readthedocs.io/en/latest/?version=latest
-        :alt: Documentation Status
-
-
-
+<p>
+  <a href="https://pypi.python.org/pypi/files_to_folders"><img src="https://img.shields.io/pypi/v/files_to_folders.svg" alt="PyPi"></a>
+  <a href="https://travis-ci.com/d0m1987/files_to_folders"><img src="https://img.shields.io/travis/d0m1987/files_to_folders.svg" alt="travis"></a>
+</p>
+<p align="left">
+  <a href="https://files-to-folders.readthedocs.io/en/latest/?version=latest"><img src="https://readthedocs.org/projects/files-to-folders/badge/?version=latest" alt="documentation"></a>
+</p>
 
 Move files into folders based on their filename / filepath using regular expressions.
 
@@ -47,7 +39,7 @@ Assuming the following folder structure (that can be found in examples/first_sim
 ```
 
 we run the following command in the folder with the structure above
-```console````
+```console
 $ files_to_folders --regexes "([a-z]*)_([0-9]*).txt" test_123.txt test_124.txt
 ```
 
@@ -65,7 +57,7 @@ This gives us the following folder structure:
 Credits
 -------
 
-This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
+This package was created with [Cookiecutter](https://github.com/audreyr/cookiecutter) and the [audreyr/cookiecutter-pypackage](https://github.com/audreyr/cookiecutter-pypackage) project template.
 
-.. _Cookiecutter: https://github.com/audreyr/cookiecutter
-.. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
+
+
