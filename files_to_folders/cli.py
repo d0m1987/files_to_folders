@@ -6,6 +6,7 @@ from pathlib import Path
 import re
 import logging
 from files_to_folders.logger import logger
+from files_to_folders.FileSorter import FileSorter, FileAction
 
 
 @click.command()
@@ -58,6 +59,7 @@ def main(input_file_or_folder, output_folder, regexes, log_level):
         else:
             raise TypeError(f"File {file_or_folder} is neither recognized as file nor as folder from pathlib.Path. Please check.")
         input_files.extend(file_or_folder)
+        logger.debug(f'Adding following path(s) to be sorted:{file_or_folder}')
 
     ######################
     # Log cli parameters #
@@ -74,9 +76,25 @@ def main(input_file_or_folder, output_folder, regexes, log_level):
         logger.debug(f"Regex {idx}: {re.compile(regex).pattern}")
     
     logger.debug(f"[End] Parameters given via command line")
+
+    #############################
+    #   Sort files into folders #
+    #############################
+    fs = FileSorter(
+        regexes=regexes, 
+        output_folder=output_folder,
+        )
+    fs.sort(input_files)
     
     return 0
 
 
 if __name__ == "__main__":
-    sys.exit(main())  # pragma: no cover
+    try:
+        sys.exit(main())  # pragma: no cover
+    except Exception as e:
+        msg=e
+        print(e)
+        logger.error(e)
+        raise e
+    
